@@ -35,7 +35,7 @@ interface Props {
 const Sidebar = ({ open, setOpen }: Props) => {
   return (
     <div>
-      <Dialog open={open} onClose={setOpen} className="relative z-50 md:hidden">
+      <Dialog open={open} onClose={setOpen} className="relative z-40 md:hidden">
         <DialogBackdrop
           transition
           className="fixed inset-0 bg-gray-900/80 transition-opacity duration-300 ease-linear data-[closed]:opacity-0"
