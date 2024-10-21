@@ -1,12 +1,6 @@
-import {
-  Disclosure,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-} from "@headlessui/react";
-import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
-import { MenuIcon } from "../icons";
+import {Disclosure, Menu, MenuButton, MenuItem, MenuItems,} from "@headlessui/react";
+import {MagnifyingGlassIcon} from "@heroicons/react/16/solid";
+import {Bars3CenterLeftIcon} from "@heroicons/react/20/solid";
 
 interface Props {
   onOpen: (open: boolean) => void;
@@ -23,7 +17,7 @@ const Navbar = ({ onOpen }: Props) => {
             className="-m-2.5 p-2.5 md:hidden"
           >
             <span className="sr-only">Open sidebar</span>
-            <MenuIcon aria-hidden="true" className="h-6 w-6" />
+            <Bars3CenterLeftIcon aria-hidden="true" className="h-6 w-6" />
           </button>
           <div className="flex flex-1 items-center px-2 ">
             <div className="w-full max-w-lg lg:max-w-xs">

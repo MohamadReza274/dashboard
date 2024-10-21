@@ -1,5 +1,9 @@
+import {Outlet} from "react-router-dom";
+
 const StudentsPage = () => {
-  return <div>StudentsPage</div>;
+  return <div>
+    <Outlet />
+  </div>;
 };
 
 export default StudentsPage;

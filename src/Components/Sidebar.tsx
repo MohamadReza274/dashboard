@@ -1,23 +1,12 @@
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  TransitionChild,
-} from "@headlessui/react";
-import {
-  ChartBarSquareIcon,
-  Cog6ToothIcon,
-  FolderIcon,
-  GlobeAltIcon,
-  ServerIcon,
-  SignalIcon,
-  XMarkIcon,
-} from "@heroicons/react/16/solid";
+import {Dialog, DialogBackdrop, DialogPanel, TransitionChild,} from "@headlessui/react";
+import {ChartBarSquareIcon, Cog6ToothIcon, GlobeAltIcon, HomeIcon, XMarkIcon,} from "@heroicons/react/16/solid";
+import {StudentIcon, TeacherIcon} from "../icons.tsx";
+import {Link} from "react-router-dom";
 
 const navigation = [
-  { name: "Projects", href: "#", icon: FolderIcon, current: false },
-  { name: "Deployments", href: "#", icon: ServerIcon, current: true },
-  { name: "Activity", href: "#", icon: SignalIcon, current: false },
+  { name: "Dashboard", href: "/", icon: HomeIcon, current: false },
+  { name: "Teachers", href: "/teachers", icon: TeacherIcon, current: true },
+  { name: "Students", href: "/students", icon: StudentIcon, current: false },
   { name: "Domains", href: "#", icon: GlobeAltIcon, current: false },
   { name: "Usage", href: "#", icon: ChartBarSquareIcon, current: false },
   { name: "Settings", href: "#", icon: Cog6ToothIcon, current: false },
@@ -75,8 +64,8 @@ const Sidebar = ({ open, setOpen }: Props) => {
                     <ul role="list" className="-mx-2 space-y-1">
                       {navigation.map((item) => (
                         <li key={item.name}>
-                          <a
-                            href={item.href}
+                          <Link
+                            to={item.href}
                             className={classNames(
                               item.current
                                 ? " text-black font-bold"
@@ -89,7 +78,7 @@ const Sidebar = ({ open, setOpen }: Props) => {
                               className="h-6 w-6 shrink-0"
                             />
                             {item.name}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
