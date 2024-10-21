@@ -1,4 +1,4 @@
-import { Student } from "./StudentList";
+import {Student} from "./StudentList";
 import {Link} from "react-router-dom";
 
 interface Props {

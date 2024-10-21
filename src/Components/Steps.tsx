@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const steps = [
   { id: 1, name: "Profile Info", href: "#", status: "complete" },
   { id: 2, name: "Personal Info", href: "#", status: "current" },
@@ -7,7 +5,6 @@ const steps = [
 ];
 
 const Steps = () => {
-  const [step, setStep] = useState(0);
   return (
     <nav aria-label="Progress" className="py-4">
       <ol role="list" className="space-y-4 md:flex md:space-x-8 md:space-y-0">

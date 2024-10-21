@@ -1,6 +1,6 @@
-import { Link, useSearchParams } from "react-router-dom";
+import {Link, useSearchParams} from "react-router-dom";
 import StudentItem from "./StudentItem";
-import { sort } from "fast-sort";
+import {sort} from "fast-sort";
 import AddStudent from "./AddStudent";
 import {students} from "../data.ts";
 
