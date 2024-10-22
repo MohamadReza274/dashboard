@@ -1,4 +1,4 @@
-import StudentList from "../Components/StudentList";
+import StudentList from "../Components/StudentList.tsx";
 import StatusCard from "../Components/StatusCard.tsx";
 import {BookOpenIcon, UserIcon, UsersIcon} from "@heroicons/react/16/solid";
 
