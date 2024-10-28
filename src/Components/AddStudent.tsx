@@ -29,7 +29,7 @@ const AddStudent = () => {
                 <div className="sm:flex sm:items-start ">
                   {/* form */}
 
-                  <StudentForm />
+                  <StudentForm onClose={() => setOpen(false)} />
                 </div>
               </div>
             </DialogPanel>

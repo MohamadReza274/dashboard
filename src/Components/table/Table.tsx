@@ -1,9 +1,10 @@
 import {Student} from "../StudentList.tsx";
-import {flexRender, getCoreRowModel, getFilteredRowModel, useReactTable} from "@tanstack/react-table";
+import {flexRender, getCoreRowModel, getFilteredRowModel, SortingState, useReactTable} from "@tanstack/react-table";
 import {useState} from "react";
 import StudentItem from "../StudentItem.tsx";
 import Search from "./Search.tsx";
 import {columns} from "./columns.tsx";
+import {ArrowDownIcon, ArrowUpIcon} from "@heroicons/react/16/solid";
 
 interface Props {
     data: Student[];
@@ -11,6 +12,8 @@ interface Props {
 
 const Table = ({data}: Props) => {
     const [searchTerm, setSearchTerm,] = useState("");
+    const [sorting, setSorting] = useState<SortingState>([])
+    console.log(sorting)
     // const [filterColumn,setFilterColumn] = useState("name")
     const [_data,] = useState<Student[]>(data);
     const table = useReactTable({
@@ -18,7 +21,9 @@ const Table = ({data}: Props) => {
         columns: columns,
         state: {
             globalFilter: searchTerm,
+            sorting,
         },
+        onSortingChange: setSorting,
         onGlobalFilterChange: setSearchTerm,
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
@@ -35,9 +40,19 @@ const Table = ({data}: Props) => {
                             {headerGroup.headers.map((header) => (
                                 <th key={header.id}
                                     scope="col"
+
                                     className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
                                 >
-                                    {flexRender(header.column.columnDef.header, header.getContext())}
+                                    <button {...{
+                                        onClick: header.column.getToggleSortingHandler(),
+                                        className: "flex gap-x-1 items-center"
+                                    }} >
+                                        {flexRender(header.column.columnDef.header, header.getContext())}
+                                        {{
+                                            asc: <ArrowUpIcon className={"w-3 h-3 mt-1"}/>,
+                                            desc: <ArrowDownIcon className={"w-3 h-3 mt-1"}/>
+                                        }[header.column.getIsSorted() as string] ?? null}
+                                    </button>
                                 </th>))}
                         </tr>))}
                         </thead>

@@ -1,6 +1,6 @@
 import AddStudent from "./AddStudent.tsx";
 import {students} from "../data.ts";
-import Table from "./table/Table.tsx";
+import StudentTable from "./StudentTable.tsx";
 
 export interface Student {
     id: number;
@@ -37,8 +37,8 @@ const StudentList = () => {
                 </div>
             </div>
 
-        {/*Table*/}
-            <Table data={students} />
+            {/*Table*/}
+            <StudentTable students={students} />
         </div>
     );
 };

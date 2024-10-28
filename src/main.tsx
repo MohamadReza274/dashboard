@@ -7,6 +7,7 @@ import HomePage from "./routes/HomePage.tsx";
 import Layout from "./routes/Layout.tsx";
 import StudentDetails from "./routes/StudentDetails.tsx";
 import StudentsPage from "./routes/StudentsPage.tsx";
+import ProfilePage from "./routes/ProfilePage.tsx";
 
 const router = createBrowserRouter([
     {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
         element: <Layout/>,
         children: [
             {index: true, element: <HomePage/>},
+            {path: "/profile", element: <ProfilePage/>},
             {
                 path: "/students", element: <StudentsPage/>, children: [
                     {path: "/students/:id", element: <StudentDetails/>}
