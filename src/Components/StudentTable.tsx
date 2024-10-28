@@ -170,7 +170,7 @@ const StudentTable = ({students}: Props) => {
                             <span className="font-medium">{table.getPageCount()}</span> results
                         </p>
                     </div>
-                    <div className="flex flex-1 justify-between sm:justify-end">
+                    <div className="flex flex-1  sm:justify-end">
                         <button
                             onClick={() => table.previousPage()}
                             disabled={!table.getCanPreviousPage()}
