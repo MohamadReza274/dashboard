@@ -13,7 +13,7 @@ import {CheckIcon, ChevronDownIcon, MagnifyingGlassIcon} from "@heroicons/react/
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/react";
 import React, {useState} from "react";
 import {Student} from "./StudentList.tsx";
-import {columns} from "./table/columns.tsx";
+import {getColumns} from "./table/columns.tsx";
 
 interface Props {
     students: Student[];
@@ -22,10 +22,16 @@ interface Props {
 const StudentTable = ({students}: Props) => {
 
     const [sorting, setSorting] = React.useState<SortingState>([])
-    const [data,] = useState<Student[]>(students as Student[]);
+    const [data, setData] = useState<Student[]>(students as Student[]);
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
     const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
     const [rowSelection, setRowSelection] = React.useState({})
+
+    const handleDelete = (id: number) => {
+        setData(prevData => prevData.filter(item => item.id !== id))
+    }
+
+    const columns = getColumns(handleDelete)
 
     const table = useReactTable({
         data,
@@ -51,7 +57,7 @@ const StudentTable = ({students}: Props) => {
 
     return <div className="mt-8 flow-root">
         <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className={"flex justify-between items-center gap-x-2 md:gap-x-0 px-2 md:px-7"}>
+            <div className={"flex justify-between items-center gap-x-2 px-2 md:px-7"}>
                 <div className="w-full max-w-lg lg:max-w-xs">
                     <label htmlFor="search" className="sr-only">
                         Search
@@ -156,10 +162,17 @@ const StudentTable = ({students}: Props) => {
                                 })}
                             </tr>
                         ))
-                    ) : null}
+                    ) : <tr>
+                        <td
+                            colSpan={columns.length}
+                            className="h-24 text-center"
+                        >
+                            No results.
+                        </td>
+                    </tr>}
                     </tbody>
                 </table>
-                <nav
+                {table.getRowModel().rows.length > 0 && <nav
                     aria-label="Pagination"
                     className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6"
                 >
@@ -186,7 +199,7 @@ const StudentTable = ({students}: Props) => {
                             Next
                         </button>
                     </div>
-                </nav>
+                </nav>}
             </div>
         </div>
     </div>

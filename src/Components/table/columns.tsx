@@ -3,14 +3,15 @@ import {Student} from "../StudentList.tsx";
 import React from "react";
 import {Link} from "react-router-dom";
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/react";
-import {ArrowsUpDownIcon, EllipsisVerticalIcon} from "@heroicons/react/16/solid";
+import {ArrowsUpDownIcon, EllipsisVerticalIcon, EyeIcon, PencilIcon, TrashIcon} from "@heroicons/react/16/solid";
 
 const columnHelper = createColumnHelper<Student>()
 
-export const columns = [
+export const getColumns = (handleDelete: (id: number) => void) => [
     columnHelper.accessor("firstName", {
         header: ({column}) => {
-            return <button className="flex items-center" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+            return <button className="flex items-center"
+                           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
                 Email
                 <ArrowsUpDownIcon className={"ml-2 h-4 w-4"}/>
             </button>
@@ -63,9 +64,9 @@ export const columns = [
         enableHiding: false,
         id: "actions",
         header: () => "Actions",
-        cell: () => <td
+        cell: ({row}) => <td
             className="relative whitespace-nowrap py-5 pl-3 pr-4 text-sm font-medium sm:pr-0">
-            <Menu as="div" className="relative ml-3 ">
+            <Menu as="div" className="relative ml-3">
                 <div>
                     <MenuButton
                         className="relative flex rounded-full p-2 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -79,19 +80,25 @@ export const columns = [
                     className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
                 >
                     <MenuItem>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                        <Link to={`/students/${row.original.id}`}
+                              className="flex items-center gap-x-2 w-full text-left px-4 py-2 text-sm text-gray-600 data-[focus]:bg-gray-100">
+                            <EyeIcon className={"w-4 h-4"}/>
                             View
-                        </a>
+                        </Link>
                     </MenuItem>
                     <MenuItem>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                        <button
+                            className="flex items-center gap-x-2 w-full text-left px-4 py-2 text-sm text-blue-700 data-[focus]:bg-gray-100">
+                            <PencilIcon className="h-4 w-4"/>
                             Edit
-                        </a>
+                        </button>
                     </MenuItem>
                     <MenuItem>
-                        <a href="#" className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100">
+                        <button onClick={() => handleDelete(row.original.id)}
+                                className="flex items-center gap-x-2 w-full text-left text-red-500 px-4 py-2 text-sm data-[focus]:bg-gray-100">
+                            <TrashIcon className="h-4 w-4"/>
                             Delete
-                        </a>
+                        </button>
                     </MenuItem>
                 </MenuItems>
             </Menu>

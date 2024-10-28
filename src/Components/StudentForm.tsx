@@ -106,9 +106,9 @@ const StudentForm = ({onClose}: Props) => {
                             >
                                 Photo
                             </label>
-                            <div className="mt-2 sm:col-span-2 sm:mt-0">
+                            <div className="mt-2 sm:col-span-2 sm:mt-0 ">
                                 <div
-                                    className="flex max-w-2xl justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                                    className="flex max-w-2xl justify-center rounded-full border border-dashed border-gray-900/25 p-6 ">
                                     <div className="text-center">
                                         <PhotoIcon
                                             aria-hidden="true"
@@ -117,9 +117,9 @@ const StudentForm = ({onClose}: Props) => {
                                         <div className="mt-4 flex text-sm leading-6 text-gray-600">
                                             <label
                                                 htmlFor="avatar"
-                                                className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 hover:text-indigo-500"
+                                                className=" relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 hover:text-indigo-500"
                                             >
-                                                <span>Upload a file</span>
+                                                <span >Upload a file</span>
                                                 <input
                                                     id="avatar"
                                                     name="avatar"
@@ -127,7 +127,6 @@ const StudentForm = ({onClose}: Props) => {
                                                     className="sr-only"
                                                 />
                                             </label>
-                                            <p className="pl-1">or drag and drop</p>
                                         </div>
                                         <p className="text-xs leading-5 text-gray-600">
                                             PNG, JPG, GIF up to 10MB
